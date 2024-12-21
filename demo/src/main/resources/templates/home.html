@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поиск по тексту</title>
+</head>
+<body>
+<h1>Загрузите файл и выполните поиск</h1>
+
+<form action="/upload" method="post" enctype="multipart/form-data">
+    <label for="file">Выберите файл:</label>
+    <input type="file" id="file" name="file" accept=".txt" required />
+    <button type="submit">Загрузить файл</button>
+</form>
+
+<hr>
+
+<form action="/search" method="post">
+    <label for="query">Ключевое слово:</label>
+    <input type="text" id="query" name="query" required />
+    <button type="submit">Поиск</button>
+</form>
+
+<p th:text="${message}"></p>
+
+<hr>
+
+<div>
+    <h3>Результаты поиска:</h3>
+    <ul>
+        <li th:each="result : ${results}" th:text="${result}"></li>
+    </ul>
+</div>
+</body>
+</html>
